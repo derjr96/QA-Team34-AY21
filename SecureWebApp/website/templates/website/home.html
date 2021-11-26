@@ -1,0 +1,32 @@
+{% extends "website/base.html" %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">SHOPROCKS</h1>
+    <p class="lead">Buy & Sell your exotic rocks here!</p>
+  </div>
+</div>
+<div class="container-fluid py-5">
+    <div id="product_item" class="row mlr-0">
+        {% for item in catalog %}
+        <div class="col-xl-4 col-sm-6 mb-5 py-2">
+            <img class="thumbnail" src="{{ item.image.url }}">
+            <div class="box-element product">
+                <a class="mr-2" href="#">{{ item.title }}</a>
+                <small class="text-muted float-right">{{item.date_posted|date:"F d, Y"}}</small>
+                <h2><a class="article-title" href="#">{{item.itemname}}</a></h2>
+                <p class="article-content"><p>{{item.content}}</p>
+                <h2 class="article-price">${{item.itemprice|floatformat:2}}
+                    <button class="btn btn-outline-secondary add-btn float-right">View Item</button>
+                    <button data-product={{item.id}} data-action= "add" class="btn btn-outline-secondary add-btn update-cart float-right">Add to Cart</button>
+                </h2>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+
+{% endblock content %}

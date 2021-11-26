@@ -1,0 +1,28 @@
+{% extends "website/base.html" %}
+{%block content %}
+    <h2>HOME E-Commerce using base Template and Bootstrap</h2>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Fluid jumbotron</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
+        {% for catalog in catalog %}
+<article class="media content-section">
+    <img src="{{ catalog.image.url }}">
+    <div class="media-body">
+        <div class="articke-metadata">
+            <a class="mr-2" href="#">{{ catalog.title }}</a>
+            <small class="text-muted">{{catalog.date_posted|date:"F d, Y"}}</small>
+            <h2><a class="article-title" href="#">{{catalog.itemName}}</a></h2>
+            <p class="articlke-content"><p>{{catalog.content}}</p></p>
+            <a class="btn btn-sm btn-info" href="{% url 'updateorder' catalog.id %}">update</a>
+            <a class="btn btn-sm btn-info" href="{% url 'deleteorder' catalog.id %}">delete</a>
+
+        </div>
+    </div>
+</article>
+
+
+        {% endfor %}
+{% endblock content %}
